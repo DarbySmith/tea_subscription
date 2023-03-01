@@ -11,4 +11,13 @@ class Api::V1::SubscriptionCustomersController < ApplicationController
       render json: { "errors": new_sub.errors.full_message.to_sentence }, status: 400
     end
   end
+
+  def destroy
+    sub_cust = SubscriptionCustomer.find(params[:id])
+    if sub_cust.destroy
+      render json: { "message": "Customer Successfuly Unsubscribed" }, status: :no_content
+    else
+      render json: { "errors": sub_cust.errors.full_message.to_sentence }
+    end
+  end
 end
