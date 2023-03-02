@@ -13,7 +13,7 @@ RSpec.describe 'subscribes a customer to a subscription', type: :request do
     }
 
     headers = { "CONTENT_TYPE" => "application/json" }
-    post '/api/v1/subscription_customers', headers: headers, params: JSON.generate(info)
+    post '/api/v1/subscription_customers', headers: headers, params: JSON.generate(subscription_customer: info)
 
     last_subscription_customer = SubscriptionCustomer.last
 
@@ -23,7 +23,7 @@ RSpec.describe 'subscribes a customer to a subscription', type: :request do
     expect(last_subscription_customer.subscription_id).to eq(subscription.id)
   end
 
-  xit 'returns an error if the customer is not valid' do
+  it 'returns an error if the customer is not valid' do
     subscription = FactoryBot.create(:subscription)
 
     info = {
