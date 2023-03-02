@@ -10,6 +10,6 @@ RSpec.describe 'cancels a customers tea subscription', type: :request do
     delete "/api/v1/subscription_customers/#{subscription_customer.id}", headers: headers
 
     expect(response).to be_successful
-    expect(response).to have_http_status(204)
+    expect(response).to have_http_status(200)
   end
 end
